@@ -1,0 +1,5 @@
+Transformers are powerful neural networks.
+They learn long range dependencies.
+Attention allows models to focus on context.
+Language modeling is an autoregressive task.
+Deep learning enables representation learning.
