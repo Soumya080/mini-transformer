@@ -21,6 +21,8 @@ class MultiHeadAttention(nn.Module):
         self.Wv = nn.Linear(d_model, d_model, bias=False)
 
         self.out_proj = nn.Linear(d_model, d_model)
+        self.last_attention = None
+
 
     def forward(self, x):
 
@@ -43,6 +45,8 @@ class MultiHeadAttention(nn.Module):
         scores = scores.masked_fill(mask == 0, float("-inf"))
 
         A = F.softmax(scores, dim=-1)
+        self.last_attention = A.detach()
+
 
         out = A @ V
 
