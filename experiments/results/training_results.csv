@@ -1,2 +1,3 @@
 n_heads,d_model,n_layers,d_ff,num_steps,val_loss,perplexity,params
 4,128,4,512,5000,0.1135,1.12,813568
+4,128,4,512,5000,0.1211,1.13,813568
