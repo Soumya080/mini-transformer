@@ -52,10 +52,10 @@ graph TB
 
 | Metric | Value |
 |--------|-------|
-| Final Validation Loss | *your value* |
-| Perplexity | *your value* |
+| Final Validation Loss | *0.1135* |
+| Perplexity | *1.12* |
 | Vocab Size | 65 (character-level) |
-| Parameters | *your value* |
+| Parameters | *813568* |
 | Training Steps | 5,000 |
 
 ### Hyperparameter Sweep
