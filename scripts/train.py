@@ -18,9 +18,9 @@ from model.gpt import GPT
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
 
-# ========================================
+
 # Hyperparameters
-# ========================================
+
 batch_size = 16
 d_model = 128
 n_heads = 4
@@ -31,9 +31,8 @@ num_steps = 5000
 learning_rate = 1e-3
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-# ========================================
 # Load data
-# ========================================
+
 data_path = os.path.join(PROJECT_ROOT, "src", "data", "input.txt")
 if not os.path.exists(data_path):
     data_path = os.path.join(PROJECT_ROOT, "src", "data", "input2.txt")
@@ -52,7 +51,6 @@ print(f"Device: {device}")
 
 # ========================================
 # Train/Val split
-# ========================================
 n = int(0.9 * len(data))
 train_data = data[:n]
 val_data = data[n:]
@@ -129,15 +127,14 @@ final_val_loss = estimate_loss(eval_iters=50)
 final_perplexity = math.exp(final_val_loss)
 print(f"\nFINAL — Val Loss: {final_val_loss:.3f} | Perplexity: {final_perplexity:.2f}")
 
-# ========================================
+
 # Save model
-# ========================================
+
 torch.save(model.state_dict(), os.path.join(PROJECT_ROOT, "model.pt"))
 print("Model saved to model.pt")
 
-# ========================================
 # Plot loss curves
-# ========================================
+
 os.makedirs(os.path.join(PROJECT_ROOT, "experiments", "plots"), exist_ok=True)
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
@@ -171,9 +168,8 @@ plt.savefig(os.path.join(PROJECT_ROOT, "experiments", "plots", "training_loss.pn
 print("Loss curves saved to experiments/plots/training_loss.png")
 plt.close()
 
-# ========================================
 # Save results to CSV
-# ========================================
+
 os.makedirs(os.path.join(PROJECT_ROOT, "experiments", "results"), exist_ok=True)
 results_path = os.path.join(PROJECT_ROOT, "experiments", "results", "training_results.csv")
 file_exists = os.path.exists(results_path)
@@ -188,9 +184,8 @@ with open(results_path, "a", newline="") as f:
                      f"{final_perplexity:.2f}", total_params])
 print(f"Results saved to {results_path}")
 
-# ========================================
 # Generate text samples
-# ========================================
+
 def generate(model, prompt_text, max_new_tokens=200, temperature=0.8):
     model.eval()
     tokens = tokenizer.encode(prompt_text)
